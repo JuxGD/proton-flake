@@ -8,8 +8,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   version = "11.0-20260428-slr";
 
   src = fetchzip {
-    url = "https://github.com/CachyOS/${finalAttrs.pname}/releases/download/cachyos-${finalAttrs.version}/cachyos-${finalAttrs.version}.tar.gz";
-    hash = "sha256-TkwhJCHPS0PdDIEL5GrxJPR09uO9U2DR8l9KWFLIF2g=";
+    url = "https://github.com/CachyOS/${finalAttrs.pname}/releases/download/cachyos-${finalAttrs.version}/proton-cachyos-${finalAttrs.version}-x86_64_v3.tar.xz";
+    hash = "sha256-bInyex+pQ7nppPzoTNzbH/rVuZ15ZdH55N2S+WdmCSI=";
   };
 
   dontUnpack = true;
