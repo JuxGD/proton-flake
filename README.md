@@ -1,10 +1,13 @@
-# DW-Proton for Nix
+# JuxGD's Proton Flake
 
-A Nix flake that packages the latest [DW-Proton](https://dawn.wine/) compatibility layer for Steam Play.
+Based on imaviso's [dwproton-flake](https://github.com/imaviso/dwproton-flake), this is a bit of an expansion including as many Proton packages as I can think of. Use these packages in `programs.steam.extraCompatPackages`.
 
 ## Features
 
-- Automatically tracks the latest DW-Proton releases
+- Automatically tracks the latest releases of different Proton versions:
+  - [CachyOS Proton](https://github.com/CachyOS/proton-cachyos)
+  - [DW-Proton](https://dawn.wine/dawn-winery/dwproton)
+  - [GE Proton](https://github.com/GloriousEggroll/proton-ge-custom)
 - Daily GitHub Actions workflow to check for updates
 - Simple flake-based installation
 
@@ -18,10 +21,11 @@ Add the flake to your inputs and add the package to `programs.steam.extraCompatP
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    dw-proton.url = "github:imaviso/dwproton-flake";
+
+    proton.url = "github:CachyOS/proton-flake"
   };
 
-  outputs = { self, nixpkgs, dw-proton, ... }: {
+  outputs = { self, nixpkgs, dw-proton, cachyos-proton, ... }: {
     nixosConfigurations.yourhostname = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -29,7 +33,9 @@ Add the flake to your inputs and add the package to `programs.steam.extraCompatP
           programs.steam = {
             enable = true;
             extraCompatPackages = [
-              dw-proton.packages.${pkgs.stdenv.hostPlatform.system}.dw-proton
+              proton.packages.${pkgs.stdenv.hostPlatform.system}.cachyos-proton # for cachyos proton
+              proton.packages.${pkgs.stdenv.hostPlatform.system}.dw-proton # for dawnwine proton
+              proton.packages.${pkgs.stdenv.hostPlatform.system}.ge-proton # for glorious eggroll proton
             ];
           };
         })
@@ -52,8 +58,8 @@ nix build
 
 ## Updates
 
-This flake automatically checks for new DW-Proton releases daily and creates pull requests when updates are available.
+This flake automatically checks for new releases daily and creates pull requests when updates are available.
 
 ## License
 
-This packaging is provided under the MIT license. DW-Proton itself may contain proprietary components.
+This packaging is provided under the MIT license. The included Proton packages may contain proprietary components.

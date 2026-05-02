@@ -1,51 +1,7 @@
+{ pkgs ? import <nixpkgs> { } }:
+
 {
-  lib,
-  stdenvNoCC,
-  fetchzip,
-}:
-stdenvNoCC.mkDerivation (finalAttrs: {
-  pname = "dwproton";
-  version = "10.0-26";
-
-  src = fetchzip {
-    url = "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-${finalAttrs.version}/dwproton-${finalAttrs.version}-x86_64.tar.xz";
-    hash = "sha256-TkwhJCHPS0PdDIEL5GrxJPR09uO9U2DR8l9KWFLIF2g=";
-  };
-
-  dontUnpack = true;
-  dontConfigure = true;
-  dontBuild = true;
-
-  outputs = [
-    "out"
-    "steamcompattool"
-  ];
-
-  installPhase = ''
-    runHook preInstall
-
-    # Make it impossible to add to an environment. Use programs.steam.extraCompatPackages instead.
-    echo "${finalAttrs.pname} should not be installed into environments. Please use programs.steam.extraCompatPackages instead." > $out
-
-    # Create steamcompattool output and symlink everything, then copy compatibilitytool.vdf for modification
-    mkdir $steamcompattool
-    ln -s $src/* $steamcompattool
-    rm $steamcompattool/compatibilitytool.vdf
-    cp $src/compatibilitytool.vdf $steamcompattool
-
-    runHook postInstall
-  '';
-
-  meta = with lib; {
-    description = ''
-      DW-Proton compatibility layer.
-
-      (This is intended for use in the `programs.steam.extraCompatPackages` option only.)
-    '';
-    homepage = "https://dawn.wine/";
-    license = licenses.unfree;
-    platforms = ["x86_64-linux"];
-    maintainers = [];
-    sourceProvenance = [sourceTypes.binaryNativeCode];
-  };
-})
+  dw-proton = pkgs.callPackage ./dw-proton.nix {};
+  ge-proton = pkgs.callPackage ./ge-proton.nix {};
+  cachyos-proton = pkgs.callPackage ./cachyos-proton.nix {};
+}
