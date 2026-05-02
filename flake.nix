@@ -21,5 +21,13 @@
       dw-proton = pkgs.callPackage ./dw-proton.nix {};
       default = self.packages.${system}.cachyos-proton;
     };
+
+    devShells.${system} = pkgs.mkShell {
+      buildInputs = with pkgs; [
+        curl
+        jq
+        nix-prefetch-url
+      ];
+    };
   };
 }
