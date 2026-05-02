@@ -2,6 +2,8 @@
 
 Based on imaviso's [dwproton-flake](https://github.com/imaviso/dwproton-flake), this is a bit of an expansion including as many Proton packages as I can think of. Use these packages in `programs.steam.extraCompatPackages`.
 
+Also shoutout [loplxl/GD-Low-Linux-Latency](https://github.com/loplxl/GD-Low-Linux-Latency)
+
 ## Features
 
 - Automatically tracks the latest releases of different Proton versions:
