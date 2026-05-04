@@ -191,7 +191,7 @@ jobs:
 
       - name: Calculate new GE Proton hash
         if: steps.check_ge_proton_version.outputs.update_needed == 'true'
-        id: calc_cachyos_proton_hash
+        id: calc_ge_proton_hash
         run: |
           URL="https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${{ steps.check_version.outputs.latest_tag }}/GE-Proton${{ steps.check_version.outputs.latest_version }}.tar.gz"
           echo "Calculating hash for: $URL"
