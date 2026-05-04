@@ -109,7 +109,7 @@ jobs:
 
       - name: Create DW Proton Pull Request
         if: steps.check_dw_proton_version.outputs.update_needed == 'true'
-        id: create_pr
+        id: create_dwproton_pr
         uses: peter-evans/create-pull-request@v7
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -212,8 +212,8 @@ jobs:
           sed -i 's|hash = ".*";|hash = "${{ steps.calc_hash.outputs.sri_hash }}";|' ge-proton.nix
 
       - name: Create GE Proton Pull Request
-        if: steps.check_cachyos_proton_version.outputs.update_needed == 'true'
-        id: create_pr
+        if: steps.check_ge_proton_version.outputs.update_needed == 'true'
+        id: create_ge_proton_pr
         uses: peter-evans/create-pull-request@v7
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -317,7 +317,7 @@ jobs:
 
       - name: Create CachyOS Proton Pull Request
         if: steps.check_cachyos_proton_version.outputs.update_needed == 'true'
-        id: create_pr
+        id: create_cachyos_proton_pr
         uses: peter-evans/create-pull-request@v7
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
