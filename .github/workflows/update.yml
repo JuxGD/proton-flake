@@ -105,7 +105,7 @@ jobs:
           sed -i 's/version = ".*";/version = "${{ steps.check_dw_proton_version.outputs.latest_version }}";/' dw-proton.nix
 
           # Update hash (using SRI format) - use | as delimiter to avoid issues with / in hash
-          sed -i 's|hash = ".*";|hash = "${{ steps.calc_hash.outputs.sri_hash }}";|' dw-proton.nix
+          sed -i 's|hash = ".*";|hash = "${{ steps.calc_dw_proton_hash.outputs.sri_hash }}";|' dw-proton.nix
 
       - name: Create DW Proton Pull Request
         if: steps.check_dw_proton_version.outputs.update_needed == 'true'
@@ -209,7 +209,7 @@ jobs:
           sed -i 's/version = ".*";/version = "${{ steps.check_ge_proton_version.outputs.latest_version }}";/' ge-proton.nix
 
           # Update hash (using SRI format) - use | as delimiter to avoid issues with / in hash
-          sed -i 's|hash = ".*";|hash = "${{ steps.calc_hash.outputs.sri_hash }}";|' ge-proton.nix
+          sed -i 's|hash = ".*";|hash = "${{ steps.calc_ge_proton_hash.outputs.sri_hash }}";|' ge-proton.nix
 
       - name: Create GE Proton Pull Request
         if: steps.check_ge_proton_version.outputs.update_needed == 'true'
@@ -313,7 +313,7 @@ jobs:
           sed -i 's/version = ".*";/version = "${{ steps.check_cachyos_proton_version.outputs.latest_version }}";/' cachyos-proton.nix
 
           # Update hash (using SRI format) - use | as delimiter to avoid issues with / in hash
-          sed -i 's|hash = ".*";|hash = "${{ steps.calc_hash.outputs.sri_hash }}";|' cacahyos-proton.nix
+          sed -i 's|hash = ".*";|hash = "${{ steps.calc_cachyos_proton_hash.outputs.sri_hash }}";|' cacahyos-proton.nix
 
       - name: Create CachyOS Proton Pull Request
         if: steps.check_cachyos_proton_version.outputs.update_needed == 'true'
