@@ -313,7 +313,7 @@ jobs:
           sed -i 's/version = ".*";/version = "${{ steps.check_cachyos_proton_version.outputs.latest_version }}";/' cachyos-proton.nix
 
           # Update hash (using SRI format) - use | as delimiter to avoid issues with / in hash
-          sed -i 's|hash = ".*";|hash = "${{ steps.calc_cachyos_proton_hash.outputs.sri_hash }}";|' cacahyos-proton.nix
+          sed -i 's|hash = ".*";|hash = "${{ steps.calc_cachyos_proton_hash.outputs.sri_hash }}";|' cachyos-proton.nix
 
       - name: Create CachyOS Proton Pull Request
         if: steps.check_cachyos_proton_version.outputs.update_needed == 'true'
