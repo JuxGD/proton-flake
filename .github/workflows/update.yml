@@ -297,7 +297,7 @@ jobs:
         if: steps.check_cachyos_proton_version.outputs.update_needed == 'true'
         id: calc_cachyos_proton_hash
         run: |
-          URL="https://github.com/CachyOS/proton-cachyos/releases/download/${{ steps.check_cachyos_proton_version.outputs.latest_tag }}/proton-cachyos-${{ steps.check_cachyos_proton_version.outputs.latest_version }}.tar.gz"
+          URL="https://github.com/CachyOS/proton-cachyos/releases/download/${{ steps.check_cachyos_proton_version.outputs.latest_tag }}/proton-cachyos-${{ steps.check_cachyos_proton_version.outputs.latest_version }}-x86_64_v3.tar.xz"
           echo "Calculating hash for: $URL"
 
           HASH=$(nix-prefetch-url --unpack "$URL")
