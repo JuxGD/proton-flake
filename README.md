@@ -27,11 +27,11 @@ Add the flake to your inputs and add the package to `programs.steam.extraCompatP
     proton.url = "github:JuxGD/proton-flake"
   };
 
-  outputs = { self, nixpkgs, dw-proton, cachyos-proton, ... }: {
+  outputs = { self, nixpkgs, proton, ... }: {
     nixosConfigurations.yourhostname = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ({ pkgs, ... }: {
+        ({ config, lib, pkgs, ... }: {
           programs.steam = {
             enable = true;
             extraCompatPackages = [
