@@ -24,7 +24,7 @@ Add the flake to your inputs and add the package to `programs.steam.extraCompatP
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    proton.url = "github:CachyOS/proton-flake"
+    proton.url = "github:JuxGD/proton-flake"
   };
 
   outputs = { self, nixpkgs, dw-proton, cachyos-proton, ... }: {
