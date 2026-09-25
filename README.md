@@ -76,13 +76,20 @@ Haven't tried this pls tell me if it works lol
 ```nix
 # configuration.nix
 
-{ config, lib, pkgs, ... }: let
+{ config, lib, pkgs, ... }:
+
+let
 
 # ...
 
   proton = import (builtins.fetchGit {
     url = "https://github.com/JuxGD/proton-nix";
-  })
+
+    # important
+    rev = "<hash>"
+    # <hash> = any commit in this repo after 739a772111b0b97aab8143747f57d56743db5bfd
+    # preferably the latest one since that's one that's the most updated
+  });
 
 # ...
 
